@@ -68,3 +68,4 @@ gem 'rails_admin'
 
 gem 'aws-sdk-s3', '~> 1.114'
 gem 'cancancan'
+gem "net-http"

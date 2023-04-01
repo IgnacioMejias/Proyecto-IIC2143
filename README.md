@@ -13,19 +13,19 @@ We've created 3 profiles so you can use the different features based on which on
 
 - If you want to have the user experience, asking for products, reviewing them, and chatting with moderator, log in as user. 
 
-Admin 
 
-mail = admin@base.com
+
+Admin: mail = admin@base.com
 password = 123456
 
-Moderator 
 
-mail = moderator@base.com
+
+Moderator: mail = moderator@base.com
 password = 123456
 
-User 
+ 
 
-mail = user@base.com
+User: mail = user@base.com
 password = 123456
 
 As the team 74 of IIC2143-2022-2, we really hope you enjoy our first Application :).

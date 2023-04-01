@@ -1,0 +1,58 @@
+<h1>New Product</h1>
+
+<%= form_for @product do |form|%>
+
+  <% if @product.errors.any? %>
+    <h2>Errors:</h2>
+    <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li> <%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class='small-container'>
+      <div class="field form-group">
+
+        <%= form.text_field :name, class:"form-control", placeholder:"Name" %>
+      </div> 
+      <div class="field form-group">
+        <%= form.hidden_field :review, class:"form-control", :value => 0.0 %>
+      </div>
+
+
+          <div>
+              <div class="input-group">
+                <%= form.select :sport, options_for_select(['Sport',
+                  'Soccer',
+                  'Skiing',
+                  'Tenis',
+                  'Basketball',
+                  'Running'
+                  ]), {}, class:'custom-select' %>
+              </div>
+          </div>
+
+      <div class="field form-group">
+
+        <%= form.text_field :price, class:"form-control", placeholder:"Price" %>
+      </div> 
+      <div class="field form-group">
+
+        <%= form.text_field :stock, class:"form-control", placeholder:"Stock" %>
+      </div> 
+      <div class="field form-group">
+
+        <%= form.text_field :size, class:"form-control", placeholder:"Size" %>
+      </div> 
+
+      <div class="field">
+        <%= form.file_field :images, multiple: true %>
+      </div>
+
+      <div class="field form-group">
+        <%= form.submit "Create new product", class:'btn btn-secondary' %>
+      </div>
+    <% end %>
+<br/>
+<%= link_to "Show products list", products_path %>
+</div>

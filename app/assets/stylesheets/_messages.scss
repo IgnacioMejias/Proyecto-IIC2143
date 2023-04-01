@@ -1,0 +1,58 @@
+@import './variables';
+@import './mixins';
+
+.main-container-messages{
+    margin: auto;
+    width: 1400px;
+}
+.messages{
+    margin-top: 60px;
+    padding: 20px 20px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: $Light-gray;
+    border-radius: 5px;
+    width: 60%;
+    &__title{
+        padding: 10px 20px;
+        text-align: center;
+        border-bottom: 1px solid $Dark-grayish-blue;
+    }
+    &__message{
+        padding: 20px 20px;
+        border-bottom: 1px solid $Dark-grayish-blue;
+    }
+    &__sender{
+        font-size: 15px;
+        margin-left: 0px!important;
+        padding: 0!important;
+    }
+    &__content{
+        margin-top: 20px;
+        font-size: 13px;
+        height: auto;
+        width: 70%;
+        word-wrap: break-word;
+    }
+    &__date-time{
+        position: relative;
+        height: 1px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: end;
+    }
+    &__date-time-text{
+        font-size: 15px!important;
+        font-weight: 500!important;
+    }
+    &__form-group{
+        margin-top: 20px;
+    }
+    &__send-btn{
+        @include btn;
+        width: 30%;
+        margin: auto;
+        margin-top: 10px;
+        background-color: $green-ish;
+    }
+}

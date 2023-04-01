@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+  <title>DCCRent</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+</head>
+<body>
+<main class="main-container-reviews-new">
+    <header class="header">
+      <div class="header__chat-btn">
+        <%= link_to"Chat", conversations_path, class: 'header__chat' %>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.role == 'admin' %>
+          <div class="header__admin-btn">
+            <%= link_to"Admin Portal", rails_admin_path, class: 'header__admin' %>
+          </div>
+          <nav class="navbar">
+            <ul class="navbar__items", style="width:500px; margin-left: 230px;">
+        <% else %>
+          <nav class="navbar">
+            <ul class="navbar__items">
+        <% end %>  
+      <% else %>  
+      <nav class="navbar">
+        <ul class="navbar__items">
+      <% end %>
+          <li><a class="navbar__link" href="<%= products_path %>">Collections</a></li>
+          <li><a class="navbar__link" href="<%= requests_index_path %>">My Requests</a></li>
+          <li><a class="navbar__link" href="<%= reviews_index_path %>">My Reviews</a></li>
+          <li><a class="navbar__link" href="<%= root_path %>">About</a></li>
+          <li><a class="navbar__link" href="<%= root_path %>">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__cart-avatar">
+          <div class="header__cart">
+            <div class="header__cart--notification"><%= @order_items.length()%></div>
+            <%= image_tag('icons/cart.png', class: "header__cart-icon") %>
+          </div>
+          <% if user_signed_in? %>
+            <%= link_to image_tag('icons/avatar.png', class: "header__avatar", alt: ""), edit_user_registration_path %>
+          <% end %>
+        </div>
+        <% if user_signed_in? %>
+          <%= link_to"Sign Out", destroy_user_session_path, method: :delete, class: 'header__sign' %>
+        <% else %>
+          <%= link_to"Sign In", new_user_session_path, class: 'header__sign' %>
+        <% end %>
+      </div>
+    </header>
+
+  <article class="content">
+    <section class="new-reviews">
+    <% @product = @request.product %>
+    <% if current_user.role != 'user' %>
+      <%= image_tag(@product.images[0], class: "new-reviews__img-request", style: 'margin-top: -130px;') %>
+    <% else %>
+      <%= image_tag(@product.images[0], class: "new-reviews__img-request", style: 'margin-top: -100px;') %>
+    <% end %>
+      <div class="new-reviews__product">
+        <p class="new-reviews__head"><%= @product.name %></p>
+
+        <%= form_for [@product, @request] do |form|%>
+
+        <% if @request.errors.any? %>
+          <h2>Errors:</h2>
+          <ul>
+            <% @request.errors.full_messages.each do |message| %>
+              <li> <%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+        <div class="field form-group">
+          <%= form.label :request_date %>
+          <%= form.text_field :request_date, class:"form-control", readonly: true  %>
+        </div>
+        <div class="field form-group">
+          <%= form.label :product_id %>
+          <%= form.text_field :product_id, class:"form-control", readonly: true  %>
+        </div>
+        <div class="field form-group">
+          <%= form.label :days %>
+          <%= form.text_field :days, class:"form-control", readonly: true  %>
+        </div>
+          <% if current_user.role != 'user' %>
+            <div class="field form-group">
+              <%= form.label :user_id %>
+              <%= form.text_field :user_id, class:"form-control", readonly: true  %>
+            </div>
+          <% end %>
+            <div class="field form-group">
+              <%= form.label :state %>
+              <%= form.text_field :state, class:"form-control", readonly: true %>
+            </div>
+        
+        <% if current_user.role != 'user' %>
+          <%= form_for(@request, as: :request, url: product_request_path(:id => @request.id, :product_id => @request.product_id)) do |form| %>
+              <% if @request.state=='pending' %>
+              <% def options_for_status
+                  [
+                  ['Accept Request','accepted'],
+                  ['Decline Request','rejected'],
+                  ['Stay Pending','pending']
+                  ]
+              end %>
+              <div>
+                  <%= form.select :state, options_for_status, {}, prompt: 'Select One', class: 'new-reviews__request-select' %>
+              </div>
+              <div>
+                  <%= form.submit 'Send', class: "new-reviews__submit" %>
+              </div>
+              <% end %>
+          <% end %>
+        <% else %>
+          <p align='center'><%= link_to "Edit", edit_product_request_path(@request), class:'new-reviews__submit' %></p>
+        <% end %>
+        
+        <div class="field form-group">
+          <%= button_to "Delete",  requests_destroy_path(@request), method: :delete,  class:'requests__delete-btn2' %>
+        </div>
+
+      <% end %>
+      </div>
+    </section>
+    <% if current_user.role != 'user' %>
+      <%= link_to "Back to request", requests_show_path(@request), class: 'new-reviews__back', style: 'margin-top: -110px;' %>
+    <% else %>
+      <%= link_to "Back to request", requests_show_path(@request), class: 'new-reviews__back', style: 'margin-top: -90px;' %>
+    <% end %>
+
+  </article>
+
+      <%= render :partial => "layouts/cart-modal.html.erb" %>
+
+</main>
+<%= javascript_pack_tag "cart-index" %>
+</body>
+</html>
+
+
+

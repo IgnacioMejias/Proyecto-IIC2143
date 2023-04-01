@@ -1,0 +1,46 @@
+<h1> Edit Product</h1>
+
+<%= form_for @product do |form|%>
+
+  <% if @product.errors.any? %>
+    <h2>Errors:</h2>
+    <ul>
+      <% @product.errors.full_messages.each do |message| %>
+        <li> <%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class:"form-control", placeholder:"Name"  %>
+  </div> 
+  <div class="field form-group">
+    <%= form.label :review %>
+    <%= form.text_field :review, class:"form-control", placeholder:"Review"  %>
+  </div>
+  <div class="field form-group">
+    <%= form.label :sport %>
+    <%= form.text_field :sport, class:"form-control", placeholder:"Sport"  %>
+  </div> 
+  <div class="field form-group">
+    <%= form.label :price %>
+    <%= form.text_field :price, class:"form-control", placeholder:"Price"  %>
+  </div> 
+  <div class="field form-group">
+    <%= form.label :stock %>
+    <%= form.text_field :stock, class:"form-control", placeholder:"Stock"  %>
+  </div> 
+  <div class="field form-group">
+    <%= form.label :size %>
+    <%= form.text_field :size, class:"form-control", placeholder:"Size"  %>
+  </div>
+  <br/>
+  
+  <div class="actions">
+    <%= form.submit "Edit existing product", class:'btn btn-secondary' %>
+  </div>
+
+<% end %>
+<br/>
+<%= link_to "Back to product", product_path(@product) %>

@@ -1,0 +1,69 @@
+@import './variables';
+@import './mixins';
+
+.main-products-container{
+    margin: auto;
+    width: 1400px;
+    
+}
+.products{    
+    margin-top: 30px;
+    width: 100%;
+    height: 1700px;
+    display: row;
+    
+    &__filter{
+        color: $red-ish;
+        margin-left: 5px;
+        width: 400px;
+        font-size: 3em;
+        margin-bottom: 20px;
+    }
+    &__gallery{
+        
+        width: 100%;
+        height: 550px;
+        display: flex;
+        justify-content: start;
+    }
+    &__product-container{
+        width: 33%;
+        height: 530px;
+    }
+    &__image{
+        padding: 0px 5px;
+        width: 100%;
+        height: 450px;
+        &:hover{
+            cursor: pointer;
+            opacity: 40%;
+        }
+    }
+    &__title{
+        margin-left: 5px;
+        font-size: 1em;
+        padding: 0;
+    }
+    &__price{
+        margin-left: 5px;
+        font-size: 17px;
+        font-weight: 400;
+        color: $Dark-grayish-blue;
+        margin-top: -5px;
+        padding: 0;
+        
+    }
+    &__rating{
+        margin-left: 5px;
+        margin-top: -3px;
+        width: 180px;
+        height: 20px;
+    }
+
+    &__rating--stars{
+        display:inline;
+        align-items: center;
+        color: $Dark-grayish-blue;
+        font-size:15px;
+    }
+}

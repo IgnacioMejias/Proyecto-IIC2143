@@ -1,0 +1,213 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+$Orange: hsl(26, 100%, 55%);
+
+
+.home-main-container{
+    margin: auto;
+    width: 1500px;
+}
+
+.home-index-content{
+    padding: 0px;
+    display: grid;
+}
+.brands{
+    height: 170px;
+    width: 1500px;
+    &__image-container{
+        width: 100%;
+        display: flex;
+    }
+    &__image{
+        width: 498px;
+        height: 170px;
+        // &:hover{
+        //     opacity: 40%;
+        //     cursor: pointer;
+        // }
+    }
+}
+.sports{
+    margin-top: 40px;
+    height: 690px;
+    width: 1500px;
+    &__image-container{
+        width: 1500px;
+        height: 500px;
+        display: flex;
+    }
+    &__image{
+        width: 299.8px;
+        height: 100%;
+        &:hover{
+            opacity: 40%;
+            cursor: pointer;
+        }
+    }
+    &__all{
+       width: 100%;
+       height: 180px; 
+       &:hover{
+        opacity: 40%;
+        cursor: pointer;
+        }
+    }
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.btn{
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+}
+
+.col-3 img{
+    width: 100%;
+}
+.small-container{
+    position: relative;
+    max-width: 1600px;
+    margin-left: 100px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.col-4{
+    flex-basis: 25%;
+    min-width: 290px;
+}
+.col-4 img{
+    width: 200%;
+    padding-right: 5px;
+}
+.rating{
+    margin-top: -5px;
+    padding-left: 15px;
+    color: #555;
+}
+.input-group{
+    margin-bottom: 35px;
+    color: #ff523b;
+}
+h1{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+h6{
+    text-align: left;
+    padding-left: 15px;
+}
+h2{
+    padding-left: 15px;
+}
+.col-1{
+    flex-basis: 10%;
+    min-width: 220px;
+}
+.col-1 .categories img{
+    position: relative;
+    padding-bottom: 5px;
+    height: 450px;
+    width: 310px;
+    text-align: center;
+    filter: grayscale(70%);
+}
+.col-1 .categories img:hover{
+    filter: grayscale(0%);
+}
+.col-1 .categories h1{
+    position: absolute;
+    margin-left: 0px;
+    top: 0px;
+    bottom: 0px;
+    color:#fff;
+    background: rgba(11, 9, 9, 0.7);
+    height: 60px;
+    visibility: hidden;
+    text-align: center;
+    pointer-events: none;
+    -webkit-transition: visibility 0s, opacity 0.2s linear; 
+    transition: visibility 0s, opacity 0.2s linear;
+}
+.col-1 .categories:hover h1{
+    width: 310px;
+    visibility: visible;
+    opacity: 1; 
+}
+.col-1 .all img{
+    position: relative;
+    padding-left: 158px;
+    padding-bottom: 5px;
+    height: 240px;
+    width: 1727px;
+    text-align: center;
+    filter: grayscale(70%);
+}
+.col-1 .all img:hover{
+    filter: grayscale(0%);
+}
+.col-1 .all h1{
+    position: absolute;
+    margin-left: 158px;
+    top: 0px;
+    bottom: 0px;
+    color:#fff;
+    background: rgba(11, 9, 9, 0.7);
+    height: 60px;
+    visibility: hidden;
+    text-align: center;
+    pointer-events: none;
+    -webkit-transition: visibility 0s, opacity 0.2s linear; 
+    transition: visibility 0s, opacity 0.2s linear;
+}
+.col-1 .all:hover h1{
+    width: 1569px;
+    visibility: visible;
+    opacity: 1; 
+}
+.col-2{
+    flex-basis: 10%;
+    min-width: 460px;
+}
+.col-2 img{
+    filter: brightness(30%);
+    position: relative;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    height: 180px;
+    width: 540px;
+    text-align: center;
+}
+.col-2 img:hover{
+    filter: brightness(100%);
+}
+
+
+.title {
+    margin-top: 1cm;
+    text-align: center;
+  }
+.center {
+    margin-top: 0.5cm;
+    text-align: center;
+}
+.center img{
+    max-width: 500px;
+    size: 480px, 700px;
+    margin-left: auto;
+    margin-right: auto;
+}

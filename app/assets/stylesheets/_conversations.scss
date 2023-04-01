@@ -1,0 +1,47 @@
+@import './variables';
+@import './mixins';
+
+.conversations{
+    margin-top: 200px;
+    &__new-chat-title{
+        font-size: 10px!important;
+        margin: auto!important;
+        margin-top: 30px!important;
+        margin-bottom: 30px!important;
+        text-align: center;
+    }
+    &__start{
+        margin-top: 30px!important;
+    }
+    &__start-text{
+        margin-top: 40px!important;
+        font-size: 40px;
+        text-decoration: none!important;
+        color: $Brown-ish!important;
+        &:hover{
+            color: $Dark-grayish-blue!important;
+        }
+    }
+    &__start-conversation{
+        text-decoration: none!important;
+    }
+    &__users{
+        margin: auto;
+        margin-bottom: 30px;
+        text-align: center;
+
+    }
+    &__user-email-text{
+        margin-top: 40px!important;
+        text-decoration: none!important;
+    }
+    &__show{
+        // border: 1px solid red;
+
+    }
+    &__title{
+        text-align: center;
+
+    }
+
+}

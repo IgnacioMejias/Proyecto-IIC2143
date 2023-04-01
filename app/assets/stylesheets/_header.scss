@@ -1,0 +1,106 @@
+@import 'variables';
+@import 'mixins';
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 100px;
+    border-bottom: 1px solid $Dark-grayish-blue;
+    &__chat-btn{
+        @include btn;
+        border-radius: 4px; 
+        width: 80px;
+        height: 27px
+    }
+    &__chat{
+        @include universalBtn;   
+        border-radius: 3px; 
+        height: 27px;
+        font-size: 14px;
+        background-color: $red-ish;
+        text-decoration: none;
+    }
+    &__admin-btn{
+        @include btn;
+        border-radius: 4px; 
+        width: 130px;
+        height: 27px;
+        margin-left: 10px;
+        
+    }
+    &__admin{
+        @include universalBtn;   
+        border-radius: 3px; 
+        height: 27px;
+        width: 100%;
+        font-size: 14px;
+        background-color: $green-ish;
+        text-decoration: none;
+    }
+    &__navigation{
+        border: 1px solid red;
+        width: 590px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__cart-avatar{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 40px;
+        position: relative;
+        right: 25px;
+    }
+    &__cart{
+        position: relative;
+        &--notification{
+            background-color: $Dark-grayish-blue;
+            width: 15px;
+            height: 15px;
+            border-radius: 16px;
+            position: absolute;
+            top: -2px;
+            right: 21px;
+            font-size: 0.6em;
+            text-align: center;
+            color: $white;   
+        }
+        &-icon{
+            position: relative;
+            left: -29px;
+            width: 35px;
+            height: 35px;
+            &:hover{
+                cursor: pointer;
+                opacity: 50%;
+            }
+        }
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    &__avatar{
+        width: 32px;
+        &:hover{
+            cursor: pointer;
+            opacity: 50%;
+        }
+        display: flex;
+    }
+    &__sign{
+        margin-left: 30px;
+        width: 100px;
+        text-decoration: none!important;
+        color: $Dark-grayish-blue;
+        &:hover{
+            cursor: pointer;
+        }
+        display: flex;
+    }
+
+}

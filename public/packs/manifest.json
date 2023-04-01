@@ -1,0 +1,71 @@
+{
+  "application.js": "/packs/js/application-69f1934bcb81066d6a9f.js",
+  "application.js.map": "/packs/js/application-69f1934bcb81066d6a9f.js.map",
+  "cart-index.js": "/packs/js/cart-index-2d8557282413e8d04812.js",
+  "cart-index.js.map": "/packs/js/cart-index-2d8557282413e8d04812.js.map",
+  "cart.js": "/packs/js/cart-19e9d73dcd6bef40b970.js",
+  "cart.js.map": "/packs/js/cart-19e9d73dcd6bef40b970.js.map",
+  "details.js": "/packs/js/details-f8c38bd1a2d1362b465b.js",
+  "details.js.map": "/packs/js/details-f8c38bd1a2d1362b465b.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-69f1934bcb81066d6a9f.js"
+      ],
+      "js.map": [
+        "/packs/js/application-69f1934bcb81066d6a9f.js.map"
+      ]
+    },
+    "cart-index": {
+      "js": [
+        "/packs/js/cart-index-2d8557282413e8d04812.js"
+      ],
+      "js.map": [
+        "/packs/js/cart-index-2d8557282413e8d04812.js.map"
+      ]
+    },
+    "cart": {
+      "js": [
+        "/packs/js/cart-19e9d73dcd6bef40b970.js"
+      ],
+      "js.map": [
+        "/packs/js/cart-19e9d73dcd6bef40b970.js.map"
+      ]
+    },
+    "details": {
+      "js": [
+        "/packs/js/details-f8c38bd1a2d1362b465b.js"
+      ],
+      "js.map": [
+        "/packs/js/details-f8c38bd1a2d1362b465b.js.map"
+      ]
+    },
+    "gallery": {
+      "js": [
+        "/packs/js/gallery-d51414dffc9fcdfd1f24.js"
+      ],
+      "js.map": [
+        "/packs/js/gallery-d51414dffc9fcdfd1f24.js.map"
+      ]
+    },
+    "rails_admin": {
+      "js": [
+        "/packs/js/rails_admin-3d2eef7906389271ccf4.js"
+      ],
+      "js.map": [
+        "/packs/js/rails_admin-3d2eef7906389271ccf4.js.map"
+      ]
+    }
+  },
+  "gallery.js": "/packs/js/gallery-d51414dffc9fcdfd1f24.js",
+  "gallery.js.map": "/packs/js/gallery-d51414dffc9fcdfd1f24.js.map",
+  "media/webfonts/fa-solid-900.eot": "/packs/media/webfonts/fa-solid-900-9bbb245e.eot",
+  "media/webfonts/fa-solid-900.svg": "/packs/media/webfonts/fa-solid-900-7a8b4f13.svg",
+  "media/webfonts/fa-solid-900.ttf": "/packs/media/webfonts/fa-solid-900-be9ee23c.ttf",
+  "media/webfonts/fa-solid-900.woff": "/packs/media/webfonts/fa-solid-900-eeccf4f6.woff",
+  "media/webfonts/fa-solid-900.woff2": "/packs/media/webfonts/fa-solid-900-1551f4f6.woff2",
+  "rails_admin.js": "/packs/js/rails_admin-3d2eef7906389271ccf4.js",
+  "rails_admin.js.map": "/packs/js/rails_admin-3d2eef7906389271ccf4.js.map",
+  "vendors~actioncable.js": "/packs/js/vendors~actioncable-865c7066b3018d114e4c.chunk.js",
+  "vendors~actioncable.js.map": "/packs/js/vendors~actioncable-865c7066b3018d114e4c.chunk.js.map"
+}

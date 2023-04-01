@@ -1,0 +1,60 @@
+      <%#------- Begin cart modal ---------%>
+      <% if user_signed_in?%>
+        <div class="cart-modal">
+          <p class="cart-modal__title">Cart</p>
+          <div class="cart-modal__checkout-container">
+            
+            <% @order_items.each do |item| %>
+              <% @product = Product.find(item.product_id) %>
+              <% @request = Request.new %>
+              <div class="cart-modal__details-container">
+                <%= image_tag(item.product.images[0], class: "cart-modal__image", alt: "thumbnail", width: "10%") %>
+                <div>
+                  <p class="cart-modal__product-name"><%= link_to item.product.name, item.product, class: "reviews__name-text" %></p>
+                  <p class="cart-modal__product-price">
+                    $<%= number_with_delimiter(item.product.price, :delimiter => '.') %> x <%= item.quantity%>
+                    <span>$<%= number_with_delimiter(item.total, :delimiter => '.') %></span>
+                  </p>
+
+                </div>
+                <%= form_for [@product, @request], :remote => true do |form|%>
+                  <% if @request.errors.any? %>
+                    <h2>Errors:</h2>
+                    <ul>
+                      <% @request.errors.full_messages.each do |message| %>
+                        <li> <%= message %></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
+                  <div class="field form-group">
+                    <%= form.hidden_field :days, class:"cart-modal__form-days" %>
+                  </div>
+
+                  <div class="field form-group">
+                    <%= form.hidden_field :request_date, class:"cart-modal__form-date"%>
+                  </div>
+
+                  <div class="field form-group">
+                    <%= form.hidden_field :quantity, class:"form-control", :value => item.quantity  %>
+                  </div>
+
+                  <div class="cart-modal__send-delete">
+                    <%= form.submit "Send Request", class:'cart-modal__request' %>
+                    <%= link_to image_tag('icons/trash.png', class: "cart-modal__delete", alt: "delete"), order_item_path(item), method: :delete %>
+                  </div>
+
+              </div>
+            <% end %>
+            <% end %>
+            <% if !@order_items[0].nil? %>
+              <input class='cart-modal__days-value' type='text' placeholder='Days' />
+
+              <input class='cart-modal__date-value' type='date' />
+              <p class="cart-modal__product-new-price">Your current cart value is: <span>$<%= number_with_delimiter(current_order.subtotal, :delimiter => '.') %></span></p>
+              <button class="cart-modal__master-send">Request All</button>
+            <% end %>
+
+          </div>
+        </div>
+      <% end %>
+      <%#------- End cart modal ------------%>

@@ -1,0 +1,13 @@
+@import "./variables";
+@import "./mixins";
+
+.main-container{
+    margin: auto;
+    width: 1200px;
+}
+.product-show-content{
+    display: flex;
+    padding: 10px 20px;
+    gap: 124px;
+}
+

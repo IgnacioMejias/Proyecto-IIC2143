@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DCCRent</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+</head>
+<body>
+  <main class="main-container">
+    <header class="header">
+      <div class="header__chat-btn">
+        <%= link_to"Chat", conversations_path, class: 'header__chat' %>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.role == 'admin' %>
+          <div class="header__admin-btn">
+            <%= link_to"Admin Portal", rails_admin_path, class: 'header__admin' %>
+          </div>
+          <nav class="navbar">
+            <ul class="navbar__items", style="width:500px; margin-left: 230px;">
+        <% else %>
+          <nav class="navbar">
+            <ul class="navbar__items">
+        <% end %>
+      <% else %>  
+        <nav class="navbar">
+          <ul class="navbar__items">
+      <% end %>
+          <li><a class="navbar__link" href="<%= root_path %>">Home</a></li>
+          <li><a class="navbar__link" href="<%= products_path %>">Collections</a></li>
+          <li><a class="navbar__link" href="<%= requests_index_path %>">My Requests</a></li>
+          <li><a class="navbar__link" href="<%= reviews_index_path %>">My Reviews</a></li>
+          <li><a class="navbar__link" href="<%= root_path %>">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__cart-avatar">
+          <div class="header__cart">
+            <div class="header__cart--notification"><%= @order_items.length()%></div>
+            <%= image_tag('icons/cart.png', class: "header__cart-icon") %>
+          </div>
+          <% if user_signed_in? %>
+            <%= link_to image_tag('icons/avatar.png', class: "header__avatar", alt: ""), edit_user_registration_path %>
+          <% end %>
+        </div>
+        <% if user_signed_in? %>
+          <%= link_to"Sign Out", destroy_user_session_path, method: :delete, class: 'header__sign' %>
+        <% else %>
+          <%= link_to"Sign In", new_user_session_path, class: 'header__sign' %>
+        <% end %>
+      </div>
+    </header>
+
+      <% if user_signed_in? %>
+        <% if current_user.role != 'user' %>
+          <section class="moderator-view">
+            <div class="moderator-options">
+              <h2>Moderator Options</h2>
+            </div>
+            <article class="moderator-btns">
+              <button class="moderator-btns__edit-product-btn">
+                <%= link_to "Edit product", edit_product_path(@product), class:'moderator-btns__edit-product' %>
+              </button>
+              <button class="moderator-btns__edit-product-btn">
+                <%= link_to "Delete product", @product, method: :delete, data: { confirm: "Do you want to delete this product?"},  class:'moderator-btns__edit-product' %>
+              </button>
+              <button class="moderator-btns__edit-product-btn">
+                <%= link_to "Show requests", requests_index_path, class:'moderator-btns__edit-product' %>
+              </button>
+            </article>
+          </section>
+        <% end %>
+      <% end %>
+
+      <section class="product-show-content">
+        <article class="gallery">
+          <div class='gallery__image-container' id="gallery_principal" style="background-size: contain; background-image: url(<%= url_for(@product.images[0]) %>)">
+            <%= image_tag('icons/previus.png', class: "gallery__previus", alt: "previus") %>
+            <%= image_tag('icons/next.png', class: "gallery__next", alt: "next") %> 
+          </div>
+          <div class="gallery__thumbnails">
+            <% @num = 0 %>
+            <% @product.images.each do |image| %>
+              <%= image_tag @product.images[@num], id: "g#{@num+1}", class: "gallery__thumbnail", alt: "thumbnail" %>
+              <% @num += 1 %>
+            <% end %>
+          </div>
+        </article>
+      
+        <article class="details">
+          <h2 class="details__brand"><%= @product.name %></h2>
+          <h2 class="details__title"><%= @product.name %></h2>
+          <p class="details__description"><%= @product.name %></p>
+          <p class="details__size">Size: <%= @product.size %></p>
+          <p class="details__price"><%= @product.price %></p>
+          <div class="details__rating">
+            <% if @product.review >= 0.5 and @product.review < 1%>
+              <div class="details__rating--stars">
+                <i class="bi bi-star-half"></i>
+              </div>
+            <% elsif @product.review >= 1 %>
+              <div class="details__rating--stars">
+                <i class="bi bi-star-fill "></i>
+              </div>
+            <% else %>
+              <div class="details__rating--stars">
+                <i class="bi bi-star"></i>
+              </div>
+            <% end %>
+
+            <% if @product.review >= 1.5 and @product.review < 2%>
+              <div class="details__rating--stars">
+                <i class="bi bi-star-half"></i>
+              </div>
+            <% elsif @product.review >= 2 %>
+              <div class="details__rating--stars">
+                <i class="bi bi-star-fill"></i>
+              </div>
+            <% else %>
+              <div class="details__rating--stars">
+                <i class="bi bi-star"></i>
+              </div>
+            <% end %>
+
+            <% if @product.review >= 2.5 and @product.review < 3%>
+              <div class="details__rating--stars">
+                <i class="bi bi-star-half"></i>
+              </div>
+            <% elsif @product.review >= 3 %>
+              <div class="details__rating--stars">
+                <i class="bi bi-star-fill"></i>
+              </div>
+            <% else %>
+              <div class="details__rating--stars">
+                <i class="bi bi-star"></i>
+              </div>
+            <% end %>
+
+            <% if @product.review >= 3.5 and @product.review < 4%>
+              <div class="details__rating--stars">
+                <i class="bi bi-star-half"></i>
+              </div>
+            <% elsif @product.review >= 4 %>
+              <div class="details__rating--stars">
+                <i class="bi bi-star-fill"></i>
+              </div>
+            <% else %>
+              <div class="details__rating--stars">
+                <i class="bi bi-star"></i>
+              </div>
+            <% end %>
+
+            <% if @product.review >= 4.5 and @product.review < 5%>
+              <div class="details__rating--stars">
+                <i class="bi bi-star-half"></i>
+              </div>
+            <% elsif @product.review >= 5 %>
+              <div class="details__rating--stars">
+                <i class="bi bi-star-fill"></i>
+              </div>
+            <% else %>
+              <div class="details__rating--stars">
+                <i class="bi bi-star"></i>
+              </div>
+            <% end %>
+          </div>
+          <div class="details__product-quantity">
+            <%= form_for @order_item do |f| %>
+              <%= f.hidden_field :product_id, :value => @product.id %>
+              <div class="input">
+                <%= image_tag('icons/minus.png', class: "input__minus", alt: "minus") %>
+                <input <%= f.text_field :quantity, :value => 1, :min => 1, :readonly => false, :class => "input__number" %>
+                  <%= image_tag('icons/plus.png', class: "input__plus", alt: "plus") %>
+                </input>
+              </div>
+              <button <%= f.submit "Add to cart", :class => "input__button" %> 
+                <%= image_tag('icons/cart.png', class: "input__cart", alt: "cart") %>
+                Add to cart
+              </button>
+            <% end %>
+          </div>
+
+          <button class="details__add-review-button">
+            <%= link_to "Create review", new_product_review_path(@product), class:'details__add-review' %>
+          </button>
+        </article>
+      </section>
+
+      <%#-------- Begin gallery modal --------%>
+      <div class="modal-gallery__background" style="background-size: contain; background-image: url(<%= url_for(@product.images[0]) %>)">
+        <article class="modal-gallery">
+          
+          <div class="modal-gallery__image-container">
+            <%= image_tag('icons/close.png', class: "modal-gallery__close", alt: "close") %>
+            <%= image_tag('icons/previus.png', class: "modal-gallery__previus", alt: "previus") %>
+            <%= image_tag('icons/next.png', class: "modal-gallery__next", alt: "next") %> 
+          </div>
+          <div class="modal-gallery__thumbnails">
+            <% @num = 0 %>
+            <% @product.images.each do |image| %>
+              <%= image_tag @product.images[@num], id: "mg#{@num+1}", class: "modal-gallery__thumbnail", alt: "thumbnail" %>
+              <% @num += 1 %>
+            <% end %>
+          </div>
+        </article>
+      </div>
+      <%#-------- End gallery modal ----------%>
+
+      <article class="product-reviews">
+        <div class="product-reviews__title">
+          <h2>Reviews</h2>
+        </div>
+        <section>
+          <% @reviews.each do |review| %>
+            <% if @product == review.product %>
+              <div class="product-reviews__review">
+                <h2 class="product-reviews__email"><%= review.user.name %></h2>
+                <p class="product-reviews__description"><%= review.description %></p>
+                <div class="details__rating">
+                  <% if review.score >= 0.5 and review.score < 1%>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star-half"></i>
+                    </div>
+                  <% elsif review.score >= 1 %>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star-fill "></i>
+                    </div>
+                  <% else %>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star"></i>
+                    </div>
+                  <% end %>
+
+                  <% if review.score >= 1.5 and review.score < 2%>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star-half"></i>
+                    </div>
+                  <% elsif review.score >= 2 %>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star-fill"></i>
+                    </div>
+                  <% else %>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star"></i>
+                    </div>
+                  <% end %>
+
+                  <% if review.score >= 2.5 and review.score < 3%>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star-half"></i>
+                    </div>
+                  <% elsif review.score >= 3 %>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star-fill"></i>
+                    </div>
+                  <% else %>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star"></i>
+                    </div>
+                  <% end %>
+
+                  <% if review.score >= 3.5 and review.score < 4%>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star-half"></i>
+                    </div>
+                  <% elsif review.score >= 4 %>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star-fill"></i>
+                    </div>
+                  <% else %>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star"></i>
+                    </div>
+                  <% end %>
+
+                  <% if review.score >= 4.5 and review.score < 5%>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star-half"></i>
+                    </div>
+                  <% elsif review.score >= 5 %>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star-fill"></i>
+                    </div>
+                  <% else %>
+                    <div class="details__rating--stars">
+                      <i class="bi bi-star"></i>
+                    </div>
+                  <% end %>
+                </div>
+                <div class="product-reviews__date">
+                  <p class="product-reviews__date-text"><%= review.created_at.to_date %></p>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </section>
+      </article>
+
+  
+      <%= render :partial => "layouts/cart-modal.html.erb" %>
+  </main>
+  <%= javascript_pack_tag 'cart' %>
+  <%= javascript_pack_tag 'gallery' %>
+  <%= javascript_pack_tag 'details' %>
+
+</body>
+</html>

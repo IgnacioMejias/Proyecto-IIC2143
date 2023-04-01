@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DCCRent</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+<main class="home-main-container">
+    <header class="header">
+      <div class="header__chat-btn">
+        <%= link_to"Chat", conversations_path, class: 'header__chat' %>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.role == 'admin' %>
+          <div class="header__admin-btn">
+            <%= link_to"Admin Portal", rails_admin_path, class: 'header__admin' %>
+          </div>
+          <nav class="navbar">
+          <ul class="navbar__items", style="width:500px; margin-left: 260px;">
+        <% else %>
+          <nav class="navbar">
+          <ul class="navbar__items">
+        <% end %>   
+      <% else %>  
+        <nav class="navbar">
+          <ul class="navbar__items">
+      <% end %>
+            <li><a class="navbar__link" href="<%= products_path %>">Collections</a></li>
+            <li><a class="navbar__link" href="<%= requests_index_path %>">My Requests</a></li>
+            <li><a class="navbar__link" href="<%= reviews_index_path %>">My Reviews</a></li>
+            <li><a class="navbar__link" href="<%= root_path %>">About</a></li>
+            <li><a class="navbar__link" href="<%= root_path %>">Contact</a></li>
+          </ul>
+        </nav>
+
+      <div class="header__cart-avatar">
+          <div class="header__cart">
+            <div class="header__cart--notification"><%= @order_items.length()%></div>
+            <%= image_tag('icons/cart.png', class: "header__cart-icon") %>
+          </div>
+          <% if user_signed_in? %>
+            <%= link_to image_tag('icons/avatar.png', class: "header__avatar", alt: ""), edit_user_registration_path %>
+          <% end %>
+        </div>
+        <% if user_signed_in? %>
+          <%= link_to"Sign Out", destroy_user_session_path, method: :delete, class: 'header__sign' %>
+        <% else %>
+          <%= link_to"Sign In", new_user_session_path, class: 'header__sign' %>
+        <% end %>
+      </div>
+    </header>
+
+<!----------------------- BRAND GALLERY --------------------->
+  <section class="home-index-content">
+    <article class="brands">
+      <div class="brands__image-container">
+        <% brands=['logonike.jpg', 'logoasics2.jpg', 'logoadidas.jpg'] %>
+        <% brands.each do |brand| %>
+          <%= image_tag(brand, class: "brands__image", alt: "image") %>
+        <% end %>
+      </div>
+
+    </article>
+    <article class="sports">
+      <div class="sports__image-container">
+        <% sports=[['Soccer', 'categories/futbol.avif'],
+                   ['Skiing', 'categories/ski.avif'],
+                   ['Tenis', 'categories/tenis.avif'],
+                   ['Basketball', 'categories/basket.avif'],
+                   ['Running', 'categories/atletismo.avif']] %>
+        <% sports.each do |sport, link| %>
+          <%= link_to image_tag(link, class: "sports__image", alt: "image"), products_path(filter: sport) %>
+        <% end %>
+      </div>
+      <%= link_to image_tag('categories/all.jpg', class: "sports__all", alt: "all"), products_path(filter: 'All') %>
+    </article>
+
+
+    <%= render :partial => "layouts/cart-modal.html.erb" %>
+
+    
+  </div>
+</main>
+  <%= javascript_pack_tag 'cart-index' %>
+
+</body>
+</html>

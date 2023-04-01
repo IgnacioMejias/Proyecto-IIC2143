@@ -1,0 +1,34 @@
+<h1>New Request</h1>
+
+<%= form_for [@product, @request] do |form|%>
+
+  <% if @request.errors.any? %>
+    <h2>Errors:</h2>
+    <ul>
+      <% @request.errors.full_messages.each do |message| %>
+        <li> <%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <div class="field form-group">
+    <%= form.label :request_date %>
+    <%= form.text_field :request_date, class:"form-control", :value => Date.today, readonly: true %>
+  </div>
+  <div class="field form-group">
+    <%= form.label :days %>
+    <%= form.text_field :days, class:"form-control", placeholder:"Days"  %>
+  </div>
+  <div class="field form-group">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity, class:"form-control", placeholder:"Quantity"  %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.submit "Send Request", class:'btn btn-secondary' %>
+  </div>
+
+<% end %>
+
+<%# asfsa %>
+
+<%= link_to "Back to product", product_path(@product) %>

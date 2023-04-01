@@ -1,0 +1,42 @@
+@import "./mixins";
+@import "./variables";
+
+.gallery{
+    width: 500px;
+
+    &__image-container{
+        margin-top: 40px;
+        position: relative;
+        left: 50px;
+        height: 500px;
+        width: 500px;
+        border-radius: 16px;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    &__previus{
+        @include image-btn(47%, -4.5%);
+        display: none
+    }
+    &__next{
+        @include image-btn(47%, 87%);
+        display: none;
+    }
+    &__thumbnails{
+        position: relative;
+        left: 100px;
+        margin-top: 20px;
+        width: 400px;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__thumbnail{
+        width: 22%;
+        border-radius: 16px;
+        &:hover{
+            cursor: pointer;
+            opacity: 40%;
+        }
+    }
+}

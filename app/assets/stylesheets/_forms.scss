@@ -1,0 +1,120 @@
+@import './variables';
+@import './mixins';
+
+.main-container-reviews-new{
+    margin: auto;
+    width: 1400px;
+    align-content: center;
+}
+
+.new-reviews{
+    margin: auto;
+    margin-top: 100px;
+    width: 1000px;
+    display: flex;
+    align-items: center;
+    
+    &__title{
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 1px solid $Brown-ish;
+        width: 100%;
+        height: 50px;
+        font-size:1.1em;
+        padding-left: 10px;
+    }
+    &__title:focus {
+        transition: none;
+        border: none!important;
+    }
+    &__first:focus {
+        transition: none;
+        border: none!important;
+    }
+    &__first{
+        vertical-align: top;
+    }
+    &__description{
+        height: 100px;
+        border: 1px solid $Brown-ish;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        width: 100%;
+        padding-left: 10px;
+        vertical-align: auto;
+        text-align: auto;
+    }
+    &__description-text{
+        decoration: none;
+        
+    }
+
+    &__submit{
+        @include universalBtn;
+    }
+    &__submit-edit{
+        @include universalBtn;
+        background-color: $green-ish;
+    }
+    &__submit-edit-request{
+        @include universalBtn;
+        background-color: $green-ish;
+    }
+    &__head{
+        font-size: 1.2em;
+    }
+    &__head span{
+        font-weight: 500;
+        font-size: 1.15em;
+        
+    }
+    &__product{
+
+        margin-bottom: 20px;
+    }
+    &__name{
+        text-decoration: none!important;
+        color: $Dark-grayish-blue;
+    }
+    &__img{
+        width: 400px;
+        height: 400px;
+        border-radius: 5px;
+        margin-right: 20px;
+    }
+    &__img-request{
+        width: 400px;
+        height: 400px;
+        border-radius: 5px;
+        margin-right: 20px;
+        margin-top: -260px;
+    }
+    &__score{
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 1px solid $Brown-ish;
+        width: 100%;
+        height: 50px;
+        font-size:1.1em;
+        padding-left: 10px;
+        
+    }
+    &__back{
+        @include universalBtn;
+        background-color: $Dark-grayish-blue;
+        margin-top: 10px;
+        color: $Light-grayish-blue;
+        width: 200px;
+        margin-left: 300px;
+
+    }
+    &__request-select{
+        margin-bottom: 20px;
+        border: none;
+        border-bottom: 1px solid $Brown-ish;
+        width: 100%;
+        height: 50px;
+        font-size:1.1em;
+        padding-left: 10px;
+    }
+}

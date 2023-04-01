@@ -1,0 +1,46 @@
+@import './variables';
+@import './mixins';
+
+.modal-gallery{
+    
+    width: 500px;
+    &__background{
+        display: none;
+        @include modal-background;
+        height: 500px;
+        width: 500px;
+        top: 15%;
+        left: 35%;
+        box-shadow:0 0 0 2000px rgba(0,0,0,0.5);
+    }
+    &__image-container{
+        height: 500px;
+        width: 100%;
+        border-radius: 16px;
+
+    }
+    &__close{
+        @include image-btn(-6.2%, 93.6%);
+    }
+    &__previus{
+        @include image-btn(47%, -28%);
+    }
+    &__next{
+        @include image-btn(47%, 77%);
+    }
+    &__thumbnails{
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+        margin-top: 30px;
+    }
+    &__thumbnail{
+        width: 20%;
+        border-radius: 16px;
+        opacity: 70%;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}

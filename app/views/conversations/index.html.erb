@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DCCRent</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" integrity="sha384-xeJqLiuOvjUBq3iGOjvSQSIlwrpqjSHXpduPd6rQpuiM3f5/ijby8pCsnbu5S81n" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+
+<main class="main-products-container">
+    <header class="header">
+      <div class="header__chat-btn">
+        <%= link_to"Chat", conversations_path, class: 'header__chat' %>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.role == 'admin' %>
+          <div class="header__admin-btn">
+            <%= link_to"Admin Portal", rails_admin_path, class: 'header__admin' %>
+          </div>
+          <nav class="navbar">
+            <ul class="navbar__items", style="width:500px; margin-left: 230px;">
+        <% else %>
+          <nav class="navbar">
+            <ul class="navbar__items">
+        <% end %>
+      <% else %>  
+        <nav class="navbar">
+          <ul class="navbar__items">
+      <% end %>
+          <li><a class="navbar__link" href="<%= root_path %>">Home</a></li>
+          <li><a class="navbar__link" href="<%= products_path %>">Collections</a></li>
+          <li><a class="navbar__link" href="<%= requests_index_path %>">My Requests</a></li>
+          <li><a class="navbar__link" href="<%= reviews_index_path %>">My Reviews</a></li>
+          <li><a class="navbar__link" href="<%= root_path %>">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__cart-avatar">
+          <div class="header__cart">
+            <div class="header__cart--notification"><%= @order_items.length()%></div>
+            <%= image_tag('icons/cart.png', class: "header__cart-icon") %>
+          </div>
+          <% if user_signed_in? %>
+            <%= link_to image_tag('icons/avatar.png', class: "header__avatar", alt: ""), edit_user_registration_path %>
+          <% end %>
+        </div>
+        <% if user_signed_in? %>
+          <%= link_to"Sign Out", destroy_user_session_path, method: :delete, class: 'header__sign' %>
+        <% else %>
+          <%= link_to"Sign In", new_user_session_path, class: 'header__sign' %>
+        <% end %>
+      </div>
+    </header>
+
+
+    <%# Begin conversation view %>
+
+    <article class="conversations">
+      <% if current_user.role == 'admin' %>
+        <div class="conversations__new-chat-title">
+          <h2>Start chat with user</h2>
+        </div>
+      <% end %>
+      <section>
+        <div class="conversations__users">
+          <% @users.each do |user| %>
+          <% if user.id != current_user.id %>
+            <% if user.role == 'admin' %>
+              <div class="conversations__start">
+                <h3 class="conversations__start-h3">
+                  <%= link_to '¡Start chattin with us!',
+                      conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post", class: "conversations__start-text"%>
+                </h3>
+              </div>
+            <% else %>
+              <% if current_user.role == 'admin' %>
+                <div class="conversations__start">
+                  <h3 class="conversations__start-h3">
+                    <%= link_to user.email,
+                        conversations_path(sender_id: current_user.id, recipient_id: user.id), method: "post", class: "conversations__start-text"%>
+                  </h3>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+          <% end %>
+        </div>
+      </section>
+      <div class="conversations__title">
+        <h1>Existing chats</h1>
+      </div>
+      <section>
+        <div class="conversations__users">
+          <% if current_user.role == 'admin'%>
+            <% @conversations.each do |conversation| %>
+              <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+                <% if conversation.sender_id == current_user.id %>
+                  <% recipient = User.find(conversation.recipient_id) %>
+                <% else %>
+                  <% recipient = User.find(conversation.sender_id) %>
+                <% end %>
+              <div class="conversations__show">
+                <h3 class="conversations__show-text"><%= link_to recipient.email, conversation_messages_path(conversation), class: "conversations__start-text"%></h3>
+              </div>
+              <% end %>
+            <% end %>
+          <% else %>
+            <% @conversations.each do |conversation| %>
+              <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+                <% if conversation.sender_id == current_user.id %>
+                  <% recipient = User.find(conversation.recipient_id) %>
+                <% else %>
+                  <% recipient = User.find(conversation.sender_id) %>
+                <% end %>
+                <% if recipient.role == 'admin'%>
+                  <h3><%= link_to '¡See conversation!', conversation_messages_path(conversation), class: "conversations__start-text" %></h3>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </section>
+    </article>
+
+    <%= render :partial => "layouts/cart-modal.html.erb" %>
+
+
+  </main>
+  <%= javascript_pack_tag 'cart-index' %>
+</body>
+</html> 

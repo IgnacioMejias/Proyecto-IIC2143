@@ -1,0 +1,81 @@
+@import "./variables";
+@import "./mixins";
+
+.details{
+    padding: 24px;
+    padding-top: 60px;
+    &__brand{
+        color: $Brown-ish;
+        text-transform: uppercase;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+        padding: 0;
+    }
+    &__title{
+        font-size: 2em;
+        margin-bottom: 37px;
+        padding: 0;
+    }
+    &__description{
+        font-size: 1.2em;
+        color: $Dark-grayish-blue;
+        line-height: 24px;
+        margin-bottom: 27px;
+    }
+    &__size{
+        font-size: 20px;
+        color: #555;
+        margin-top: 5px;
+        
+    }
+    &__price{
+        margin-top: -5px;
+        font-size: 20px;
+        font-weight: 500;
+        color: black;
+        
+    }
+    &__rating{
+        margin-top: -5px;
+        width: 180px;
+        height: 20px;
+    }
+
+    &__rating--stars{
+        display:inline;
+        align-items: center;
+        color: $Brown-ish;
+        font-size:18px;
+    }
+    &__product-quantity{
+        width: 100%;
+        height: 100px;
+        margin-top: 20px;
+        margin-bottom: 20px;  
+        display: flex; 
+        gap: 10px;
+        
+    }
+    &__add-review-button{
+        @include btn;
+        margin-left: 0%;
+        width: 40%;
+        font-size: 13px;
+    }
+    &__add-review{
+        @include universalBtn;    
+    }
+    &__request-button{
+        @include btn;
+        margin-bottom: 60px;
+        margin-left: 0%;
+        width: 40%;
+        font-size: 13px;
+    }
+    &__request{
+        @include universalBtn;    
+        background-color: $green-ish;
+    }
+
+}

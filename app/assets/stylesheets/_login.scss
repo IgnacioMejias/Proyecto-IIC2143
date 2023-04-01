@@ -1,0 +1,21 @@
+@import './mixins';
+@import './variables';
+
+.log-in{
+    width: 1200px;
+    margin: auto;
+    margin-top: 100px;
+
+    &__btn{
+        @include universalBtn;
+        margin-bottom: 30px;
+        width: 400px;
+    }
+    &__btn2{
+        @include universalBtn;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        width: 150px;
+        background-color: $red-ish;
+    }
+}

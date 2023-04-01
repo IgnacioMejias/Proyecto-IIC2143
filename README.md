@@ -13,17 +13,17 @@ We've created 3 profiles so you can use the different features based on which on
 
 - If you want to have the user experience, asking for products, reviewing them, and chatting with moderator, log in as user. 
 
-# Admin 
+Admin 
 
 mail = admin@base.com
 password = 123456
 
-# Moderator 
+Moderator 
 
 mail = moderator@base.com
 password = 123456
 
-# User 
+User 
 
 mail = user@base.com
 password = 123456

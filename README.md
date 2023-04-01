@@ -1,18 +1,17 @@
-# 2022-2-grupo-74
+# Software term project 
 
-A continuación, se deja el link a heroku. Además, se encuentra el github projects del grupo, y un link a un drive para facilitar la obtención de imágenes para la creación de productos :). 
 
-https://software-22-2.herokuapp.com/
+link to the deploy on render: https://proyecto-software-l5i6.onrender.com/
 
-https://github.com/users/rodrigoogalde/projects/2
+If you want to run the app locally, remember to migrate the db and do bundle install. 
 
-https://drive.google.com/drive/folders/10ecOZpk1sKTyEZPawYeasI7u_HBSI7p8?usp=sharing
+We've created 3 profiles so you can use the different features based on which one you choose
 
-El Diagrama de arquitectura está en la carpeta docs. 
+- If you want to have access to the Admin dashboard, add/edit/remove/delete products/users/reviews, and accept/decline requests, log in as Admin. 
 
-Para correr la app localmente recuerda hacer las migraciones y el bundle install. 
+- If you want to do the same except having access to the Admin dashboard, log in as Moderator. 
 
-Se dejaron creados tres perfiles. A estos puedes ingresar con las siguientes credenciales: 
+- If you want to have the user experience, asking for products, reviewing them, and chatting with moderator, log in as user. 
 
 # Admin 
 
@@ -28,3 +27,11 @@ password = 123456
 
 mail = user@base.com
 password = 123456
+
+As the team 74 of IIC2143-2022-2, we really hope you enjoy our first Application :).
+
+Developed by:
+
+Raimundo Fuchslocher
+Ignacio Mejías
+Rodrigo Ogalde
